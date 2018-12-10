@@ -1,17 +1,29 @@
-import socket,sys,time
+import socket,sys,time,threading
+from threading import Thread
 x = 5
 s = socket.socket()
-host = input(str("Please enter the hostname of the server : "))
+host = input(str("Please enter the ip/hostname of the server : "))
 port = 8080
-s.connect((host,port))
+try:
+    s.connect((host,port))
+except:
+    print("cannot connect to server try again.")
+
+def recive():
+    while 1:
+        incoming_message = s.recv(1024)
+        incoming_message = incoming_message.decode()
+        print(" Server : ", incoming_message)
+        print("")
+
+def send():
+    while 1:
+        message = input(": ")
+        message = message.encode('ascii')
+        s.send(message)
+
 print("Connected to chat server")
-while x > 1:
-    incoming_message = s.recv(1024)
-    incoming_message = incoming_message.decode()
-    print(" Server : ", incoming_message)
-    print("")
-    message = input(": ")
-    message = message.encode()
-    s.send(message)
-    print("message has been sent...")
-    print("")
+threading.Thread(target=recive())
+
+while 1:
+    pass
