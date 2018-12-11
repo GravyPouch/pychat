@@ -7,6 +7,7 @@ Clients can go and come as they please, The server wont crash trust me it only l
 
 Stinky parts:
 only one client can connect at a time
+the script on Mac cant recover from a client dissconnecting
 
 Things to know
 For mac users: Leave the ip/hostname box empty if you are running this on you local machine.
